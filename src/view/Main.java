@@ -50,9 +50,11 @@ public class Main {
                     if (conteudoParaAvaliar != null) {
                         System.out.print("Digite a nota (1-5): ");
                         int nota = scanner.nextInt();
+                        scanner.nextLine();
                         usuario.avaliarConteudo(conteudoParaAvaliar, nota);
                         conteudoDAO.salvarUsuarios();
-                    } else {
+                    }
+                    else {
                         System.out.println("Conteúdo não encontrado!");
                     }
                     break;
@@ -69,7 +71,8 @@ public class Main {
                     if (conteudoParaFavoritar != null) {
                         usuario.adicionarAosFavoritos(conteudoParaFavoritar);
                         conteudoDAO.salvarUsuarios();
-                    } else {
+                    }
+                    else {
                         System.out.println("Conteúdo não encontrado!");
                     }
                     break;
@@ -106,8 +109,6 @@ public class Main {
                             scanner.nextLine();
 
                             if (tipoConteudo == 1) {
-                                System.out.print("Título do Filme: ");
-                                String tituloFilmeNovo = scanner.nextLine();
                                 System.out.print("Ano de Lançamento: ");
                                 int anoFilmeNovo = scanner.nextInt();
                                 scanner.nextLine();
@@ -115,14 +116,15 @@ public class Main {
                                 String generoFilmeNovo = scanner.nextLine();
                                 System.out.print("Duração (minutos): ");
                                 int duracaoFilmeNovo = scanner.nextInt();
+                                scanner.nextLine();
+                                System.out.print("Diretor: ");
+                                String diretorFilmeNovo = scanner.nextLine();
 
-                                Filme filmeNovo = new Filme(tituloFilmeNovo, anoFilmeNovo, generoFilmeNovo, duracaoFilmeNovo);
+                                Filme filmeNovo = new Filme(tituloPesquisa, anoFilmeNovo, generoFilmeNovo, duracaoFilmeNovo, diretorFilmeNovo);
                                 conteudoDAO.adicionarConteudo(filmeNovo);
                                 System.out.println("Filme cadastrado com sucesso!");
                             }
                             else if (tipoConteudo == 2) {
-                                System.out.print("Título da Série: ");
-                                String tituloSerieNova = scanner.nextLine();
                                 System.out.print("Ano de Lançamento: ");
                                 int anoSerieNova = scanner.nextInt();
                                 scanner.nextLine();
@@ -132,10 +134,14 @@ public class Main {
                                 int temporadasSerieNova = scanner.nextInt();
                                 System.out.print("Número de Episódios: ");
                                 int episodiosSerieNova = scanner.nextInt();
+                                scanner.nextLine();
 
-                                Serie serieNova = new Serie(tituloSerieNova, anoSerieNova, generoSerieNova, temporadasSerieNova, episodiosSerieNova);
+                                Serie serieNova = new Serie(tituloPesquisa, anoSerieNova, generoSerieNova, temporadasSerieNova, episodiosSerieNova);
                                 conteudoDAO.adicionarConteudo(serieNova);
                                 System.out.println("Série cadastrada com sucesso!");
+                            }
+                            else {
+                                System.out.println("Tipo de conteúdo inválido.");
                             }
                         }
                     }
@@ -154,7 +160,8 @@ public class Main {
                     System.out.println("Opção inválida.");
             }
 
-        } while (opcao != 7);
+        }
+        while (opcao != 7);
 
         scanner.close();
     }

@@ -10,11 +10,20 @@ public class Serie extends Conteudo {
         this.numeroEpisodios = numeroEpisodios;
     }
 
-    @Override
-    public void calcularMediaAvaliacao(int novaNota) {
-        somaAvaliacoes += novaNota;
-        totalAvaliacoes++;
-        mediaAvaliacao = (double) somaAvaliacoes / totalAvaliacoes;
+    public int getNumeroTemporadas() {
+        return numeroTemporadas;
+    }
+
+    public void setNumeroTemporadas(int numeroTemporadas) {
+        this.numeroTemporadas = numeroTemporadas;
+    }
+
+    public int getNumeroEpisodios() {
+        return numeroEpisodios;
+    }
+
+    public void setNumeroEpisodios(int numeroEpisodios) {
+        this.numeroEpisodios = numeroEpisodios;
     }
 
     @Override
