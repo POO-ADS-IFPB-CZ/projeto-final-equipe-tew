@@ -26,12 +26,12 @@ public class Main {
         int opcao;
         do {
             System.out.println("\nMenu:");
-            System.out.println("1. Cadastrar Filme");
-            System.out.println("2. Cadastrar Série");
-            System.out.println("3. Avaliar Conteúdo");
-            System.out.println("4. Adicionar aos Favoritos");
-            System.out.println("5. Exibir Favoritos");
-            System.out.println("6. Exibir Conteúdos Vistos");
+            System.out.println("1. Avaliar Conteúdo");
+            System.out.println("2. Adicionar aos Favoritos");
+            System.out.println("3. Exibir Favoritos");
+            System.out.println("4. Exibir Conteúdos Vistos");
+            System.out.println("5. Pesquisar ou Cadastrar Conteúdo");
+            System.out.println("6. Exibir Todos os Conteúdos Cadastrados");
             System.out.println("7. Sair");
             System.out.print("Escolha uma opção: ");
             opcao = scanner.nextInt();
@@ -39,40 +39,6 @@ public class Main {
 
             switch (opcao) {
                 case 1:
-                    System.out.print("Título do Filme: ");
-                    String tituloFilme = scanner.nextLine();
-                    System.out.print("Ano de Lançamento: ");
-                    int anoFilme = scanner.nextInt();
-                    scanner.nextLine();
-                    System.out.print("Gênero: ");
-                    String generoFilme = scanner.nextLine();
-                    System.out.print("Duração (minutos): ");
-                    int duracao = scanner.nextInt();
-
-                    Filme filme = new Filme(tituloFilme, anoFilme, generoFilme, duracao);
-                    conteudoDAO.adicionarConteudo(filme);
-                    System.out.println("Filme cadastrado com sucesso!");
-                    break;
-
-                case 2:
-                    System.out.print("Título da Série: ");
-                    String tituloSerie = scanner.nextLine();
-                    System.out.print("Ano de Lançamento: ");
-                    int anoSerie = scanner.nextInt();
-                    scanner.nextLine();  // Consumir a quebra de linha
-                    System.out.print("Gênero: ");
-                    String generoSerie = scanner.nextLine();
-                    System.out.print("Número de Temporadas: ");
-                    int temporadas = scanner.nextInt();
-                    System.out.print("Número de Episódios: ");
-                    int episodios = scanner.nextInt();
-
-                    Serie serie = new Serie(tituloSerie, anoSerie, generoSerie, temporadas, episodios);
-                    conteudoDAO.adicionarConteudo(serie);
-                    System.out.println("Série cadastrada com sucesso!");
-                    break;
-
-                case 3:
                     System.out.print("Digite o título do conteúdo a ser avaliado: ");
                     String tituloAvaliacao = scanner.nextLine();
                     Conteudo conteudoParaAvaliar = conteudoDAO.carregarConteudos()
@@ -91,7 +57,7 @@ public class Main {
                     }
                     break;
 
-                case 4:
+                case 2:
                     System.out.print("Digite o título do conteúdo a ser adicionado aos favoritos: ");
                     String tituloFavorito = scanner.nextLine();
                     Conteudo conteudoParaFavoritar = conteudoDAO.carregarConteudos()
@@ -108,12 +74,76 @@ public class Main {
                     }
                     break;
 
-                case 5:
+                case 3:
                     usuario.exibirFavoritos();
                     break;
 
-                case 6:
+                case 4:
                     usuario.exibirConteudosVistos();
+                    break;
+
+                case 5:
+                    System.out.print("Digite o título do conteúdo a ser pesquisado: ");
+                    String tituloPesquisa = scanner.nextLine();
+                    Conteudo conteudoPesquisado = conteudoDAO.carregarConteudos()
+                            .stream()
+                            .filter(c -> c.getTitulo().equalsIgnoreCase(tituloPesquisa))
+                            .findFirst()
+                            .orElse(null);
+
+                    if (conteudoPesquisado != null) {
+                        System.out.println("Conteúdo encontrado!");
+                        conteudoPesquisado.exibirDetalhes();
+                    }
+                    else {
+                        System.out.println("Conteúdo não encontrado! Deseja cadastrá-lo? (S/N)");
+                        String opcaoCadastro = scanner.nextLine();
+                        if (opcaoCadastro.equalsIgnoreCase("S")) {
+                            System.out.println("Escolha o tipo de conteúdo para cadastrar:");
+                            System.out.println("1. Filme");
+                            System.out.println("2. Série");
+                            int tipoConteudo = scanner.nextInt();
+                            scanner.nextLine();
+
+                            if (tipoConteudo == 1) {
+                                System.out.print("Título do Filme: ");
+                                String tituloFilmeNovo = scanner.nextLine();
+                                System.out.print("Ano de Lançamento: ");
+                                int anoFilmeNovo = scanner.nextInt();
+                                scanner.nextLine();
+                                System.out.print("Gênero: ");
+                                String generoFilmeNovo = scanner.nextLine();
+                                System.out.print("Duração (minutos): ");
+                                int duracaoFilmeNovo = scanner.nextInt();
+
+                                Filme filmeNovo = new Filme(tituloFilmeNovo, anoFilmeNovo, generoFilmeNovo, duracaoFilmeNovo);
+                                conteudoDAO.adicionarConteudo(filmeNovo);
+                                System.out.println("Filme cadastrado com sucesso!");
+                            }
+                            else if (tipoConteudo == 2) {
+                                System.out.print("Título da Série: ");
+                                String tituloSerieNova = scanner.nextLine();
+                                System.out.print("Ano de Lançamento: ");
+                                int anoSerieNova = scanner.nextInt();
+                                scanner.nextLine();
+                                System.out.print("Gênero: ");
+                                String generoSerieNova = scanner.nextLine();
+                                System.out.print("Número de Temporadas: ");
+                                int temporadasSerieNova = scanner.nextInt();
+                                System.out.print("Número de Episódios: ");
+                                int episodiosSerieNova = scanner.nextInt();
+
+                                Serie serieNova = new Serie(tituloSerieNova, anoSerieNova, generoSerieNova, temporadasSerieNova, episodiosSerieNova);
+                                conteudoDAO.adicionarConteudo(serieNova);
+                                System.out.println("Série cadastrada com sucesso!");
+                            }
+                        }
+                    }
+                    break;
+
+                case 6:
+                    System.out.println("Todos os conteúdos cadastrados:");
+                    conteudoDAO.carregarConteudos().forEach(Conteudo::exibirDetalhes);
                     break;
 
                 case 7:
