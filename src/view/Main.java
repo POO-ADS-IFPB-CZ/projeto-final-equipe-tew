@@ -32,7 +32,8 @@ public class Main {
             System.out.println("4. Exibir Conteúdos Vistos");
             System.out.println("5. Pesquisar ou Cadastrar Conteúdo");
             System.out.println("6. Exibir Todos os Conteúdos Cadastrados");
-            System.out.println("7. Sair");
+            System.out.println("7. Remover dos Favoritos");
+            System.out.println("8. Sair");
             System.out.print("Escolha uma opção: ");
             opcao = scanner.nextInt();
             scanner.nextLine();
@@ -155,13 +156,12 @@ public class Main {
                 case 7:
                     System.out.println("Saindo...");
                     break;
-
                 default:
                     System.out.println("Opção inválida.");
             }
 
         }
-        while (opcao != 7);
+        while (opcao != 8);
 
         scanner.close();
     }
