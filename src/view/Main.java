@@ -173,7 +173,6 @@ public class Main {
                 case 8:
                     System.out.println("Saindo...");
                     break;
-
                 default:
                     System.out.println("Opção inválida.");
             }
