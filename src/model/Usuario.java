@@ -35,21 +35,22 @@ public class Usuario implements Serializable {
         }
     }
 
-    public void avaliarConteudo(Conteudo conteudo, double novaNota) {
+    public void avaliarConteudo(Conteudo conteudo, double nota) {
         if (conteudosVistos.containsKey(conteudo)) {
-            double notaAntiga = conteudosVistos.get(conteudo);
+            System.out.println("Você já avaliou este conteúdo. Deseja editar a nota? (S/N)");
             Scanner scanner = new Scanner(System.in);
-            System.out.println("Você já avaliou esse conteúdo com a nota " + notaAntiga + ". Deseja modificar (S/N)?");
             String resposta = scanner.nextLine();
+
             if (resposta.equalsIgnoreCase("S")) {
-                conteudosVistos.put(conteudo, novaNota);
-                System.out.println("Nota atualizada com sucesso!");
-            } else {
-                System.out.println("Nota não alterada.");
+                editarNotaConteudo(conteudo, nota);
             }
-        } else {
-            conteudosVistos.put(conteudo, novaNota);
-            System.out.println("Você avaliou " + conteudo.getTitulo() + " com nota " + novaNota);
+            else {
+                System.out.println("Avaliação não alterada.");
+            }
+        }
+        else {
+            conteudosVistos.put(conteudo, (double) nota);
+            System.out.println("Conteúdo avaliado com sucesso!");
         }
     }
 
@@ -111,6 +112,15 @@ public class Usuario implements Serializable {
             System.out.println(conteudo.getTitulo() + " foi removido dos favoritos.");
         } else {
             System.out.println(conteudo.getTitulo() + " não está na lista de favoritos.");
+        }
+    }
+
+    public void editarNotaConteudo(Conteudo conteudo, double novaNota) {
+        if (conteudosVistos.containsKey(conteudo)) {
+            conteudosVistos.put(conteudo, novaNota);
+            System.out.println("Nota atualizada com sucesso para " + conteudo.getTitulo() + " com nota " + novaNota);
+        } else {
+            System.out.println("Você não avaliou este conteúdo.");
         }
     }
 
