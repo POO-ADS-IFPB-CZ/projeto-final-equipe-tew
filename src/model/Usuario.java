@@ -104,4 +104,14 @@ public class Usuario implements Serializable {
     public void setConteudosVistos(Map<Conteudo, Double> conteudosVistos) {
         this.conteudosVistos = conteudosVistos;
     }
+
+    public void removerDosFavoritos(Conteudo conteudo) {
+        if (favoritos.contains(conteudo)) {
+            favoritos.remove(conteudo);
+            System.out.println(conteudo.getTitulo() + " foi removido dos favoritos.");
+        } else {
+            System.out.println(conteudo.getTitulo() + " não está na lista de favoritos.");
+        }
+    }
+
 }
