@@ -33,7 +33,8 @@ public class Main {
             System.out.println("5. Pesquisar ou Cadastrar Conteúdo");
             System.out.println("6. Exibir Todos os Conteúdos Cadastrados");
             System.out.println("7. Remover Conteúdo dos favoritos");
-            System.out.println("8. Sair");
+            System.out.println("8. Editar nota de conteúdo");
+            System.out.println("9. Sair");
             System.out.print("Escolha uma opção: ");
             opcao = scanner.nextInt();
             scanner.nextLine();
@@ -50,7 +51,7 @@ public class Main {
 
                     if (conteudoParaAvaliar != null) {
                         System.out.print("Digite a nota (1-5): ");
-                        int nota = scanner.nextInt();
+                        double nota = scanner.nextDouble();
                         scanner.nextLine();
                         usuario.avaliarConteudo(conteudoParaAvaliar, nota);
                         conteudoDAO.salvarUsuarios();
@@ -153,7 +154,7 @@ public class Main {
                     conteudoDAO.carregarConteudos().forEach(Conteudo::exibirDetalhes);
                     break;
 
-                case 7: // Remover dos favoritos
+                case 7:
                     System.out.print("Digite o título do conteúdo a ser removido dos favoritos: ");
                     String tituloRemover = scanner.nextLine();
                     Conteudo conteudoParaRemover = conteudoDAO.carregarConteudos()
@@ -169,15 +170,34 @@ public class Main {
                         System.out.println("Conteúdo não encontrado!");
                     }
                     break;
-
                 case 8:
+                    System.out.print("Digite o título do conteúdo cuja nota você deseja editar: ");
+                    String tituloNota = scanner.nextLine();
+                    Conteudo conteudoParaEditar = conteudoDAO.carregarConteudos()
+                            .stream()
+                            .filter(c -> c.getTitulo().equalsIgnoreCase(tituloNota))
+                            .findFirst()
+                            .orElse(null);
+
+                    if (conteudoParaEditar != null) {
+                        System.out.print("Digite a nova nota (1-5): ");
+                        double novaNota = scanner.nextDouble();
+                        scanner.nextLine();
+                        usuario.editarNotaConteudo(conteudoParaEditar, novaNota);
+                        conteudoDAO.salvarUsuarios();
+                    } else {
+                        System.out.println("Conteúdo não encontrado!");
+                    }
+                    break;
+
+                case 9:
                     System.out.println("Saindo...");
                     break;
                 default:
                     System.out.println("Opção inválida.");
             }
 
-        } while (opcao != 8);
+        } while (opcao != 9);
 
         scanner.close();
     }
