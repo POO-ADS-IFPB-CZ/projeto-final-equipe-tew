@@ -32,7 +32,8 @@ public class Main {
             System.out.println("4. Exibir Conteúdos Vistos");
             System.out.println("5. Pesquisar ou Cadastrar Conteúdo");
             System.out.println("6. Exibir Todos os Conteúdos Cadastrados");
-            System.out.println("7. Sair");
+            System.out.println("7. Remover Conteúdo dos favoritos");
+            System.out.println("8. Sair");
             System.out.print("Escolha uma opção: ");
             opcao = scanner.nextInt();
             scanner.nextLine();
@@ -152,7 +153,24 @@ public class Main {
                     conteudoDAO.carregarConteudos().forEach(Conteudo::exibirDetalhes);
                     break;
 
-                case 7:
+                case 7: // Remover dos favoritos
+                    System.out.print("Digite o título do conteúdo a ser removido dos favoritos: ");
+                    String tituloRemover = scanner.nextLine();
+                    Conteudo conteudoParaRemover = conteudoDAO.carregarConteudos()
+                            .stream()
+                            .filter(c -> c.getTitulo().equalsIgnoreCase(tituloRemover))
+                            .findFirst()
+                            .orElse(null);
+
+                    if (conteudoParaRemover != null) {
+                        usuario.removerDosFavoritos(conteudoParaRemover);
+                        conteudoDAO.salvarUsuarios();
+                    } else {
+                        System.out.println("Conteúdo não encontrado!");
+                    }
+                    break;
+
+                case 8:
                     System.out.println("Saindo...");
                     break;
 
@@ -160,8 +178,7 @@ public class Main {
                     System.out.println("Opção inválida.");
             }
 
-        }
-        while (opcao != 7);
+        } while (opcao != 8);
 
         scanner.close();
     }

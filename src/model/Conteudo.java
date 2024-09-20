@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public abstract class Conteudo implements Serializable {
     protected String titulo;
@@ -42,4 +43,20 @@ public abstract class Conteudo implements Serializable {
         System.out.println("Ano de Lançamento: " + anoLancamento);
         System.out.println("Gênero: " + genero);
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Conteudo conteudo = (Conteudo) obj;
+        return anoLancamento == conteudo.anoLancamento &&
+                Objects.equals(titulo, conteudo.titulo) &&
+                Objects.equals(genero, conteudo.genero);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(titulo, anoLancamento, genero);
+    }
+
 }
