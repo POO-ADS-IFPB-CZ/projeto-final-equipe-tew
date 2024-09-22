@@ -16,21 +16,24 @@ public class ConteudoDao {
         this.usuarios = carregarUsuarios();
         this.conteudos = carregarConteudos();
     }
-    public Usuario autenticarOuCadastrarUsuario(String email, String senha) {
+    public Usuario autenticarOuCadastrarUsuario(String email, String senha, String nome) {
+        if (buscarUsuario(email) == null && (nome == null || nome.isEmpty())) {
+            System.out.println("Nome não pode ser vazio para novos cadastros.");
+            return null;
+        }
+
         Usuario usuario = buscarUsuario(email);
+
         if (usuario == null) {
-            Scanner scanner = new Scanner(System.in);
-            System.out.print("Nome: ");
-            String nome = scanner.nextLine();
             usuario = new Usuario(nome, email, senha);
             adicionarUsuario(usuario);
             salvarUsuarios();
             System.out.println("Novo usuário cadastrado com sucesso!");
-        }
-        else if (!usuario.verificarSenha(senha)) {
+        } else if (!usuario.verificarSenha(senha)) {
             System.out.println("Senha incorreta.");
             return null;
         }
+
         return usuario;
     }
 
