@@ -31,9 +31,9 @@ public class TelaConteudos extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Abre a tela de cadastro
-                //TelaCadastroConteudo telaCadastro = new TelaCadastroConteudo(usuario);
-                //telaCadastro.pack();
-                //telaCadastro.setVisible(true);
+                TelaCadastroConteudo telaCadastro = new TelaCadastroConteudo(usuario);
+                telaCadastro.pack();
+                telaCadastro.setVisible(true);
             }
         });
 
