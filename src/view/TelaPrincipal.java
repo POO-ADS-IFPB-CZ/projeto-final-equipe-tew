@@ -60,9 +60,9 @@ public class TelaPrincipal extends JDialog {
             JOptionPane.showMessageDialog(TelaPrincipal.this, "Login realizado com sucesso!");
 
             // Abrir a tela de conteúdos
-            //TelaConteudos telaConteudos = new TelaConteudos(usuarioLogado);
-            //telaConteudos.pack();
-            //telaConteudos.setVisible(true);
+            TelaConteudos telaConteudos = new TelaConteudos(usuarioLogado);
+            telaConteudos.pack();
+            telaConteudos.setVisible(true);
 
             dispose();
         }
