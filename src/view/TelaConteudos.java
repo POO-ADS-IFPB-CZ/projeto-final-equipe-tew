@@ -51,9 +51,9 @@ public class TelaConteudos extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Abre a tela de favoritos
-                //TelaFavoritos telaFavoritos = new TelaFavoritos(usuario);
-                //telaFavoritos.pack();
-                //telaFavoritos.setVisible(true);
+                TelaFavoritos telaFavoritos = new TelaFavoritos(usuario);
+                telaFavoritos.pack();
+                telaFavoritos.setVisible(true);
             }
         });
 
