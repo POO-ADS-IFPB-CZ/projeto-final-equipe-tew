@@ -41,9 +41,9 @@ public class TelaConteudos extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Abre a tela de avaliação
-                //TelaAvaliarConteudo telaAvaliar = new TelaAvaliarConteudo(usuario);
-                //telaAvaliar.pack();
-                //telaAvaliar.setVisible(true);
+                TelaAvaliarConteudo telaAvaliar = new TelaAvaliarConteudo(usuario);
+                telaAvaliar.pack();
+                telaAvaliar.setVisible(true);
             }
         });
 
