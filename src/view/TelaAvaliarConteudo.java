@@ -2,7 +2,7 @@ package view;
 
 import dao.ConteudoDao;
 import model.Usuario;
-import model.Conteudo; // Importar a classe Conteudo
+import model.Conteudo;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -57,7 +57,7 @@ public class TelaAvaliarConteudo extends JDialog {
                     }
                     else {
                         usuario.avaliarConteudo(conteudoParaAvaliar, nota);
-                        JOptionPane.showMessageDialog(contentPane, "Avaliação salva com sucesso!" + nota);
+                        JOptionPane.showMessageDialog(contentPane, "Avaliação salva com sucesso!");
                     }
                 } else {
                     JOptionPane.showMessageDialog(contentPane, "Conteúdo não encontrado.");
