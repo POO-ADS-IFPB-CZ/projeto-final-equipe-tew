@@ -23,6 +23,7 @@ public class TelaPrincipal extends JDialog {
         setModal(true);
         getRootPane().setDefaultButton(loginButton);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setTitle("Login");
         labelNome.setVisible(false);
         nameField.setVisible(false);
 
@@ -51,6 +52,7 @@ public class TelaPrincipal extends JDialog {
                 JOptionPane.showMessageDialog(TelaPrincipal.this, "Nome é obrigatório para novos cadastros!");
                 labelNome.setVisible(true);
                 nameField.setVisible(true);
+                pack();
             } else {
                 JOptionPane.showMessageDialog(TelaPrincipal.this, "Email ou senha incorretos! Tente novamente.");
             }
