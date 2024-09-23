@@ -44,7 +44,9 @@ public class TelaFavoritos extends JDialog {
         buttonAdicionar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                TelaAdicionarAosFavoritos telaAddFavorito = new TelaAdicionarAosFavoritos(usuario);
+                telaAddFavorito.pack();
+                telaAddFavorito.setVisible(true);
             }
         });
     }
