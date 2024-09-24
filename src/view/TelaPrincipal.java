@@ -21,6 +21,7 @@ public class TelaPrincipal extends JDialog {
         dao = new ConteudoDao();
         setContentPane(contentPane);
         setModal(true);
+        setLocation(600, 300);
         getRootPane().setDefaultButton(loginButton);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setTitle("Login");
