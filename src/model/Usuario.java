@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+import java.text.DecimalFormat;
 import java.util.*;
 
 public class Usuario implements Serializable {
@@ -61,13 +62,19 @@ public class Usuario implements Serializable {
         }
     }
 
-    public void exibirConteudosVistos() {
-        System.out.println("Conteúdos vistos por " + nome + ":");
+    public List<String> exibirConteudosVistos() {
+        List<String> conteudosVistosTexto = new ArrayList<>();
+        DecimalFormat df = new DecimalFormat("#.#"); // Define o formato para uma casa decimal
+
         for (Map.Entry<Conteudo, Double> entry : conteudosVistos.entrySet()) {
             Conteudo conteudo = entry.getKey();
             double nota = entry.getValue();
-            System.out.println("Título: " + conteudo.getTitulo() + " | Nota: " + nota);
+            // Formata a nota para uma casa decimal
+            String notaFormatada = df.format(nota);
+            conteudosVistosTexto.add("Título: " + conteudo.getTitulo() + " | Nota: " + notaFormatada);
         }
+
+        return conteudosVistosTexto; // Retorna a lista de conteúdos vistos
     }
 
     public String getNome() {

@@ -16,6 +16,7 @@ public class TelaConteudos extends JDialog {
     private JButton buttonAvaliarConteudo;
     private JButton buttonFavoritos;
     private JList<String> listConteudos; // Exibe a lista de conteúdos
+    private JButton suaContaButton;
     private Usuario usuario;
     private ConteudoDao dao;
 
@@ -44,6 +45,15 @@ public class TelaConteudos extends JDialog {
                 TelaAvaliarConteudo telaAvaliar = new TelaAvaliarConteudo(usuario);
                 telaAvaliar.pack();
                 telaAvaliar.setVisible(true);
+            }
+        });
+        suaContaButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Abre a tela de avaliação
+                TelaUsuario telaUsuario = new TelaUsuario(usuario);
+                telaUsuario.pack();
+                telaUsuario.setVisible(true);
             }
         });
 
