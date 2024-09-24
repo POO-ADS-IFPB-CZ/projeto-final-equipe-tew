@@ -22,6 +22,7 @@ public class TelaRemoverFavorito extends JDialog {
 
         setContentPane(contentPane);
         setModal(true);
+        setLocation(600, 300);
         getRootPane().setDefaultButton(buttonOK);
         setTitle("Remover Favorito");
 

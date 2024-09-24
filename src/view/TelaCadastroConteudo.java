@@ -38,6 +38,7 @@ public class TelaCadastroConteudo extends JDialog {
         dao = new ConteudoDao();
         setContentPane(contentPane);
         setModal(true);
+        setLocation(600, 300);
         pack();
         getRootPane().setDefaultButton(buttonOK);
 

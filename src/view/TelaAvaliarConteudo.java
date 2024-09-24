@@ -22,6 +22,7 @@ public class TelaAvaliarConteudo extends JDialog {
 
         setContentPane(contentPane);
         setModal(true);
+        setLocation(600, 300);
 
         SpinnerNumberModel model = new SpinnerNumberModel(0.0, 0.0, 5.0, 0.1);
         notaSpinner.setModel(model);

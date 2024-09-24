@@ -22,6 +22,7 @@ public class TelaAdicionarAosFavoritos extends JDialog {
 
         setContentPane(contentPane);
         setModal(true);
+        setLocation(600, 300);
         getRootPane().setDefaultButton(buttonOK);
         setTitle("Adicionar Favorito");
 

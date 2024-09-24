@@ -25,6 +25,7 @@ public class TelaConteudos extends JDialog {
         dao = new ConteudoDao();
         setContentPane(contentPane);
         setModal(true);
+        setLocation(600, 300);
         setTitle("Conteúdos disponíveis");
 
         // Ações dos botões
