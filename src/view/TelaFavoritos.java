@@ -49,6 +49,20 @@ public class TelaFavoritos extends JDialog {
                 telaAddFavorito.setVisible(true);
             }
         });
+        buttonRemover.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                TelaRemoverFavorito telaRemoverFavorito = new TelaRemoverFavorito(usuario);
+                telaRemoverFavorito.pack();
+                telaRemoverFavorito.setVisible(true);
+            }
+        });
+        cancelarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+            }
+        });
     }
 
     public void carregarFavoritos(){

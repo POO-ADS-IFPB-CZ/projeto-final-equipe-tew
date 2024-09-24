@@ -72,6 +72,7 @@ public class TelaCadastroConteudo extends JDialog {
 
                     Filme novoFilme = new Filme(titulo, lancamento, genero, duracao, diretor);
                     dao.adicionarConteudo(novoFilme);
+                    JOptionPane.showMessageDialog(TelaCadastroConteudo.this, "Filme adicionado com sucesso!");
                 } else if(serieRadioButton.isSelected()){
                     String genero = "Serie";
                     int temporadas = Integer.parseInt(textTemporadas.getText());
@@ -79,6 +80,7 @@ public class TelaCadastroConteudo extends JDialog {
 
                     Serie novaSerie = new Serie(titulo, lancamento, genero, temporadas, episodios);
                     dao.adicionarConteudo(novaSerie);
+                    JOptionPane.showMessageDialog(TelaCadastroConteudo.this, "serie adicionado com sucesso!");
                 }
 
                 dispose();

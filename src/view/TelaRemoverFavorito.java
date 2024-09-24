@@ -8,7 +8,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class TelaAdicionarAosFavoritos extends JDialog {
+public class TelaRemoverFavorito extends JDialog {
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
@@ -16,14 +16,14 @@ public class TelaAdicionarAosFavoritos extends JDialog {
     private Usuario usuario;
     private ConteudoDao dao;
 
-    public TelaAdicionarAosFavoritos(Usuario usuario) {
+    public TelaRemoverFavorito(Usuario usuario) {
         this.usuario = usuario;
         dao = new ConteudoDao();
 
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
-        setTitle("Adicionar Favorito");
+        setTitle("Remover Favorito");
 
 
         buttonOK.addActionListener(new ActionListener() {
@@ -37,20 +37,13 @@ public class TelaAdicionarAosFavoritos extends JDialog {
                         .orElse(null);
 
                 if (conteudoParaFavoritar != null) {
-                    usuario.adicionarAosFavoritos(conteudoParaFavoritar);
+                    usuario.removerDosFavoritos(conteudoParaFavoritar);
                     dao.salvarUsuarios();
-                    JOptionPane.showMessageDialog(TelaAdicionarAosFavoritos.this, "Adicionado com sucesso!");
+                    JOptionPane.showMessageDialog(TelaRemoverFavorito.this, "Conteúdo removodo com sucesso!");
                 }
                 else {
-                    JOptionPane.showMessageDialog(TelaAdicionarAosFavoritos.this, "Conteúdo não encontrado!");
+                    JOptionPane.showMessageDialog(TelaRemoverFavorito.this, "Conteúdo não encontrado!");
                 }
-
-                dispose();
-            }
-        });
-        buttonCancel.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
                 dispose();
             }
         });
